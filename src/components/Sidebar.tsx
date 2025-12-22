@@ -115,7 +115,7 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse }: SidebarProps) => {
         <div className="px-4 flex-1 flex flex-col overflow-hidden">
           {/* New Thread Button */}
           <Button
-            className="w-full bg-[#9810FA] hover:bg-purple-600 text-white font-medium mb-4 h-11 shadow-sm flex items-center justify-start gap-3 px-4"
+            className="w-full bg-[#9810FA] hover:bg-purple-600 text-white font-medium mb-4 h-11 shadow-sm flex items-center justify-start gap-3 px-4 rounded-full"
             radius="full"
           >
             <PlusIcon className="w-5 h-5" />
