@@ -1,5 +1,5 @@
 import { Card, CardBody } from "@heroui/react";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 interface ExampleCardProps {
   title: string;

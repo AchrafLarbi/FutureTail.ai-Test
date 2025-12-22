@@ -15,7 +15,7 @@ export { MoonIcon } from "./MoonIcon";
 export { SettingsIcon } from "./SettingsIcon";
 export { CrownIcon } from "./CrownIcon";
 export { HelpIcon } from "./HelpIcon";
-export { LogoutIcon } from "./LogoutIcon";
+export { LogoutIcon } from "./LogOutIcon";
 export { RobotIcon } from "./RobotIcon";
 export { SendIcon } from "./SendIcon";
 export { InfoIcon } from "./InfoIcon";
