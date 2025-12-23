@@ -96,6 +96,8 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse }: SidebarProps) => {
             <img
               src={auraIcon}
               alt="Aura Logo"
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-contain"
             />
           </div>
