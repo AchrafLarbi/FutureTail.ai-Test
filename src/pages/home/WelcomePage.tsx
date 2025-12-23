@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Header,
   AuraLogo,
@@ -33,20 +33,43 @@ const exampleCards = [
 ];
 
 export const WelcomePage = () => {
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+      if (window.innerWidth < 768) {
+        setIsSidebarCollapsed(true);
+      }
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-[#F9FAFB]">
+    <div className="min-h-screen bg-[#F9FAFB] dark:bg-black transition-colors duration-300">
+      {/* Overlay for mobile when sidebar is open */}
+      {!isSidebarCollapsed && isMobile && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          onClick={() => setIsSidebarCollapsed(true)}
+        />
+      )}
+
       {/* Fixed Sidebar */}
       <Sidebar
         isCollapsed={isSidebarCollapsed}
         onToggleCollapse={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
       />
 
-      {/* Main wrapper with left margin for sidebar */}
+      {/* Main wrapper with left margin for sidebar (only on desktop) */}
       <div
         className={`min-h-screen flex flex-col transition-all duration-300 ${
-          isSidebarCollapsed ? "ml-0" : "ml-[280px]"
+          isSidebarCollapsed ? "ml-0" : "md:ml-[280px] ml-0"
         }`}
       >
         <Header isCollapsed={isSidebarCollapsed} />
@@ -58,7 +81,7 @@ export const WelcomePage = () => {
             <AuraLogo />
 
             {/* Title */}
-            <h1 className="text-4xl font-bold text-gray-900 -mt-5">
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-white -mt-5">
               Welcome to{" "}
               <span className="bg-aura-gradient bg-clip-text text-transparent">
                 Aura
@@ -66,14 +89,16 @@ export const WelcomePage = () => {
             </h1>
 
             {/* Subtitle */}
-            <p className="text-xl mb-4">How can I help you today?</p>
+            <p className="text-xl mb-4 text-gray-600 dark:text-gray-300">
+              How can I help you today?
+            </p>
 
             {/* Search Input */}
             <SearchInput />
 
             {/* Examples Section */}
             <div className="w-full mt-10">
-              <p className="text-xs font-medium text-[#6A7282] tracking-wider text-center mb-5 uppercase">
+              <p className="text-xs font-medium text-[#6A7282] dark:text-gray-400 tracking-wider text-center mb-5 uppercase">
                 Get started with an example below
               </p>
 

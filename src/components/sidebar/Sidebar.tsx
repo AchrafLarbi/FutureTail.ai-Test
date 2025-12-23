@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Image } from "@heroui/react";
+import { useDarkMode } from "../../context";
 
 import auraIcon from "../../assets/icon/aura_sidebar.png";
 import avatar from "../../assets/icon/avatar.png";
@@ -59,6 +60,7 @@ interface SidebarProps {
 }
 
 export const Sidebar = ({ isCollapsed, onToggleCollapse }: SidebarProps) => {
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
   const [isHistoryOpen, setIsHistoryOpen] = useState(true);
   const [activeChatId, setActiveChatId] = useState(1);
   const [activeDashboardId, setActiveDashboardId] = useState<number | null>(
@@ -77,7 +79,7 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse }: SidebarProps) => {
             isIconOnly
             variant="light"
             size="md"
-            className="text-gray-400 hover:text-gray-600 bg-white shadow-md rounded-lg"
+            className="text-gray-400 hover:text-gray-600 bg-white dark:bg-gray-800 dark:text-gray-300 dark:hover:text-white shadow-md rounded-lg"
             onClick={onToggleCollapse}
           >
             <SidebarCollapseIcon className="w-6 h-6" isCollapsed={true} />
@@ -87,7 +89,7 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse }: SidebarProps) => {
 
       {/* Full Sidebar */}
       <aside
-        className={`fixed left-0 top-0 bottom-0 w-[280px] bg-white border-r border-gray-100 flex flex-col z-50 transition-transform duration-300 ${
+        className={`fixed left-0 top-0 bottom-0 w-[280px] bg-white dark:bg-gray-900 border-r border-gray-100 dark:border-gray-800 flex flex-col z-50 transition-transform duration-300 ${
           isCollapsed ? "-translate-x-full" : "translate-x-0"
         }`}
       >
@@ -137,8 +139,8 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse }: SidebarProps) => {
           </Button>
 
           {/* Search Threads */}
-          <button className="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors w-full text-left">
-            <SearchIcon className="w-5 h-5 text-gray-400" />
+          <button className="flex items-center gap-3 px-3 py-2.5 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors w-full text-left">
+            <SearchIcon className="w-5 h-5 text-gray-400 dark:text-gray-500" />
             <span className="text-sm font-medium">Search Threads</span>
           </button>
 
@@ -146,14 +148,14 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse }: SidebarProps) => {
           <div>
             <button
               onClick={() => setIsHistoryOpen(!isHistoryOpen)}
-              className="flex items-center justify-between px-3 py-2.5 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors w-full text-left"
+              className="flex items-center justify-between px-3 py-2.5 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors w-full text-left"
             >
               <div className="flex items-center gap-3">
-                <HistoryIcon className="w-5 h-5 text-gray-400" />
+                <HistoryIcon className="w-5 h-5 text-gray-400 dark:text-gray-500" />
                 <span className="text-sm font-medium">History</span>
               </div>
               <ChevronDownIcon
-                className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${
+                className={`w-4 h-4 text-gray-400 dark:text-gray-500 transition-transform duration-200 ${
                   isHistoryOpen ? "rotate-0" : "-rotate-90"
                 }`}
               />
@@ -168,28 +170,30 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse }: SidebarProps) => {
                     onClick={() => setActiveChatId(chat.id)}
                     className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors w-full text-left ${
                       activeChatId === chat.id
-                        ? "bg-purple-50 border border-purple-200"
-                        : "hover:bg-gray-50"
+                        ? "bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-700"
+                        : "hover:bg-gray-50 dark:hover:bg-gray-800"
                     }`}
                   >
                     <ChatIcon
                       className={`w-4 h-4 flex-shrink-0 ${
                         activeChatId === chat.id
                           ? "text-purple-500"
-                          : "text-gray-400"
+                          : "text-gray-400 dark:text-gray-500"
                       }`}
                     />
                     <div className="flex-1 min-w-0">
                       <p
                         className={`text-sm truncate ${
                           activeChatId === chat.id
-                            ? "text-purple-700 font-medium"
-                            : "text-gray-700"
+                            ? "text-purple-700 dark:text-purple-400 font-medium"
+                            : "text-gray-700 dark:text-gray-300"
                         }`}
                       >
                         {chat.name}
                       </p>
-                      <p className="text-xs text-gray-400">{chat.time}</p>
+                      <p className="text-xs text-gray-400 dark:text-gray-500">
+                        {chat.time}
+                      </p>
                     </div>
                   </button>
                 ))}
@@ -198,11 +202,11 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse }: SidebarProps) => {
           </div>
 
           {/* Divider */}
-          <div className="border-t border-gray-100 my-4" />
+          <div className="border-t border-gray-100 dark:border-gray-800 my-4" />
 
           {/* Dashboards Section */}
           <div className="flex items-center justify-between px-3 mb-3">
-            <span className="text-xs font-semibold text-gray-400 tracking-wider uppercase">
+            <span className="text-xs font-semibold text-gray-400 dark:text-gray-500 tracking-wider uppercase">
               Dashboards
             </span>
             <button className="text-purple-500 hover:text-purple-600 transition-colors">
@@ -227,13 +231,15 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse }: SidebarProps) => {
                     }}
                     className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors w-full text-left ${
                       isActive
-                        ? "bg-gray-100 text-gray-900"
-                        : "text-gray-600 hover:bg-gray-50"
+                        ? "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white"
+                        : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
                     }`}
                   >
                     <IconComponent
                       className={`w-5 h-5 ${
-                        isActive ? "text-purple-500" : "text-gray-400"
+                        isActive
+                          ? "text-purple-500"
+                          : "text-gray-400 dark:text-gray-500"
                       }`}
                     />
                     <span className="text-sm font-medium">
@@ -243,13 +249,13 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse }: SidebarProps) => {
 
                   {/* User Menu Dropdown - appears under Dashboard 1 */}
                   {showUserMenu && (
-                    <div className="mt-2 mx-2 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+                    <div className="mt-2 mx-2 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 overflow-hidden">
                       {/* User Info Header */}
-                      <div className="px-4 py-4 border-b border-gray-100">
-                        <p className="text-base font-semibold text-gray-900">
+                      <div className="px-4 py-4 border-b border-gray-100 dark:border-gray-700">
+                        <p className="text-base font-semibold text-gray-900 dark:text-white">
                           Ilyes Boudjelthia
                         </p>
-                        <p className="text-sm text-[#6A7282]">
+                        <p className="text-sm text-[#6A7282] dark:text-gray-400">
                           iboudjelthia@futuretail.ai
                         </p>
                       </div>
@@ -261,20 +267,42 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse }: SidebarProps) => {
                           return (
                             <button
                               key={item.id}
-                              className="flex items-center gap-4 px-4 py-3  hover:bg-gray-50 transition-colors w-full text-left"
+                              onClick={() => {
+                                if (item.action === "darkMode") {
+                                  toggleDarkMode();
+                                }
+                              }}
+                              className="flex items-center justify-between gap-4 px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors w-full text-left"
                             >
-                              <MenuIcon className="w-5 h-5 text-[#717182]" />
-                              <span className="text-sm font-medium">
-                                {item.name}
-                              </span>
+                              <div className="flex items-center gap-4">
+                                <MenuIcon className="w-5 h-5 text-[#717182] dark:text-gray-400" />
+                                <span className="text-sm font-medium dark:text-gray-200">
+                                  {item.name}
+                                </span>
+                              </div>
+                              {item.action === "darkMode" && (
+                                <div
+                                  className={`w-10 h-6 rounded-full p-1 transition-colors ${
+                                    isDarkMode ? "bg-purple-500" : "bg-gray-300"
+                                  }`}
+                                >
+                                  <div
+                                    className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${
+                                      isDarkMode
+                                        ? "translate-x-4"
+                                        : "translate-x-0"
+                                    }`}
+                                  />
+                                </div>
+                              )}
                             </button>
                           );
                         })}
                       </div>
 
                       {/* Logout */}
-                      <div className="border-t border-gray-100 py-2">
-                        <button className="flex items-center gap-4 px-4 py-3 text-red-500 hover:bg-red-50 transition-colors w-full text-left">
+                      <div className="border-t border-gray-100 dark:border-gray-700 py-2">
+                        <button className="flex items-center gap-4 px-4 py-3 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors w-full text-left">
                           <LogoutIcon className="w-5 h-5" />
                           <span className="text-sm font-medium">Log Out</span>
                         </button>
@@ -288,11 +316,11 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse }: SidebarProps) => {
         </div>
 
         {/* User Profile */}
-        <div className="px-4 py-4 border-t border-gray-100">
+        <div className="px-4 py-4 border-t border-gray-100 dark:border-gray-800">
           <div className="flex items-center gap-3 px-2">
             <div className="relative w-10 h-10 flex items-center justify-center">
               {!isAvatarLoaded && (
-                <div className="absolute inset-0 flex items-center justify-center bg-gray-100 rounded-full">
+                <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800 rounded-full">
                   <div className="w-5 h-5 border-2 border-purple-200 border-t-purple-500 rounded-full animate-spin" />
                 </div>
               )}
@@ -309,10 +337,10 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse }: SidebarProps) => {
               />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-gray-900 truncate">
+              <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
                 Ilyes Boudjelthia
               </p>
-              <p className="text-xs text-gray-500 truncate">
+              <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
                 iboudjelthia@futuretail.ai
               </p>
             </div>

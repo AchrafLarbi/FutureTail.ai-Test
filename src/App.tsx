@@ -1,7 +1,12 @@
 import { WelcomePage } from "./pages";
+import { DarkModeProvider } from "./context";
 
 function App() {
-  return <WelcomePage />;
+  return (
+    <DarkModeProvider>
+      <WelcomePage />
+    </DarkModeProvider>
+  );
 }
 
 export default App;
