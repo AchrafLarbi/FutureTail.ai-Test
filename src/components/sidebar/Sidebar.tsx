@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Avatar } from "@heroui/react";
+import { Button } from "@heroui/react";
 
 import auraIcon from "../../assets/icon/aura_sidebar.png";
 import avatar from "../../assets/icon/avatar.png";
@@ -279,11 +279,10 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse }: SidebarProps) => {
         {/* User Profile */}
         <div className="px-4 py-4 border-t border-gray-100">
           <div className="flex items-center gap-3 px-2">
-            <Avatar
+            <img
               src={avatar}
               alt="User Avatar"
-              size="sm"
-              className="w-10 h-10"
+              className="w-10 h-10 rounded-full object-cover"
             />
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium text-gray-900 truncate">
