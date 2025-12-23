@@ -33,15 +33,18 @@ const exampleCards = [
 ];
 
 export const WelcomePage = () => {
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   // Check if mobile on mount and resize
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-      if (window.innerWidth < 768) {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      if (mobile) {
         setIsSidebarCollapsed(true);
+      } else {
+        setIsSidebarCollapsed(false);
       }
     };
 
