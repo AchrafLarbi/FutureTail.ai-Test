@@ -8,7 +8,7 @@ import {
   PlusIcon,
   SettingsIcon,
   InfoIcon,
-} from "./icons";
+} from "../icons";
 
 const assistants = [
   { id: 1, name: "Analytics Pro", model: "GPT-4 Turbo" },

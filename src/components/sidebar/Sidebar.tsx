@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Button, Avatar } from "@heroui/react";
 
-import auraIcon from "../assets/icon/aura_sidebar.png";
-import avatar from "../assets/icon/avatar.png";
+import auraIcon from "../../assets/icon/aura_sidebar.png";
+import avatar from "../../assets/icon/avatar.png";
 import {
   SearchIcon,
   HistoryIcon,
@@ -18,7 +18,7 @@ import {
   CrownIcon,
   HelpIcon,
   LogoutIcon,
-} from "./icons";
+} from "../icons";
 
 const dashboards = [
   { id: 1, name: "Dashboard 1", icon: GridIcon, active: false },
@@ -85,14 +85,14 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse }: SidebarProps) => {
 
       {/* Full Sidebar */}
       <aside
-        className={`fixed left-0 top-0 bottom-0 w-[280px] bg-white border-r border-[#E5E7EB] flex flex-col z-50 transition-transform duration-300 ${
+        className={`fixed left-0 top-0 bottom-0 w-[280px] bg-white border-r border-gray-100 flex flex-col z-50 transition-transform duration-300 ${
           isCollapsed ? "-translate-x-full" : "translate-x-0"
         }`}
       >
         {/* Header with Logo and Collapse Button */}
         <div className="flex items-center justify-between px-5 py-4">
           {/* Logo */}
-          <div className="relative w-10 h-10">
+          <div className="relative w-12 h-12">
             <img
               src={auraIcon}
               alt="Aura Logo"
@@ -124,8 +124,8 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse }: SidebarProps) => {
           </Button>
 
           {/* Search Threads */}
-          <button className="flex items-center gap-3 px-3 py-2.5 text-[#6A7282] hover:bg-gray-50 rounded-lg transition-colors w-full text-left">
-            <SearchIcon className="w-5 h-5 text-[#6A7282]" />
+          <button className="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors w-full text-left">
+            <SearchIcon className="w-5 h-5 text-gray-400" />
             <span className="text-sm font-medium">Search Threads</span>
           </button>
 
@@ -133,14 +133,14 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse }: SidebarProps) => {
           <div>
             <button
               onClick={() => setIsHistoryOpen(!isHistoryOpen)}
-              className="flex items-center justify-between px-3 py-2.5 text-[#6A7282] hover:bg-gray-50 rounded-lg transition-colors w-full text-left"
+              className="flex items-center justify-between px-3 py-2.5 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors w-full text-left"
             >
               <div className="flex items-center gap-3">
-                <HistoryIcon className="w-5 h-5 text-[#6A7282]" />
+                <HistoryIcon className="w-5 h-5 text-gray-400" />
                 <span className="text-sm font-medium">History</span>
               </div>
               <ChevronDownIcon
-                className={`w-4 h-4 text-[#6A7282] transition-transform duration-200 ${
+                className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${
                   isHistoryOpen ? "rotate-0" : "-rotate-90"
                 }`}
               />
@@ -162,8 +162,8 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse }: SidebarProps) => {
                     <ChatIcon
                       className={`w-4 h-4 flex-shrink-0 ${
                         activeChatId === chat.id
-                          ? "text-[#8200DB]"
-                          : "text-[#364153]"
+                          ? "text-purple-500"
+                          : "text-gray-400"
                       }`}
                     />
                     <div className="flex-1 min-w-0">

@@ -4,14 +4,14 @@ import {
   AuraLogo,
   SearchInput,
   ExampleCard,
-  Sidebar,
-} from "../components";
+} from "../../components/home";
+import { Sidebar } from "../../components/sidebar/Sidebar";
 import {
   CompareIcon,
   TrendIcon,
   ChartIcon,
   BellIcon,
-} from "../components/icons";
+} from "../../components/icons";
 
 const exampleCards = [
   {

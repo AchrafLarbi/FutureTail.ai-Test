@@ -1,4 +1,4 @@
-import auraIcon from "../assets/icon/aura2.png";
+import auraIcon from "../../assets/icon/aura2.png";
 
 export const AuraLogo = () => {
   return (

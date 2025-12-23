@@ -1,23 +1,9 @@
-export { ShareIcon } from "./ShareIcon";
-export { StarIcon } from "./StarIcon";
-export { CompareIcon } from "./CompareIcon";
-export { TrendIcon } from "./TrendIcon";
-export { ChartIcon } from "./ChartIcon";
-export { BellIcon } from "./BellIcon";
-export { SearchIcon } from "./SearchIcon";
-export { HistoryIcon } from "./HistoryIcon";
-export { GridIcon } from "./GridIcon";
-export { PlusIcon } from "./PlusIcon";
-export { ChevronDownIcon } from "./ChevronDownIcon";
-export { SidebarCollapseIcon } from "./SidebarCollapseIcon";
-export { ChatIcon } from "./ChatIcon";
-export { MoonIcon } from "./MoonIcon";
-export { SettingsIcon } from "./SettingsIcon";
-export { CrownIcon } from "./CrownIcon";
-export { HelpIcon } from "./HelpIcon";
-export { LogoutIcon } from "./LogOutIcon";
-export { RobotIcon } from "./RobotIcon";
-export { SendIcon } from "./SendIcon";
-export { InfoIcon } from "./InfoIcon";
-export { DashboardTrendIcon } from "./DashboardTrendIcon";
-export { DashboardChartIcon } from "./DashboardChartIcon";
+/* eslint-disable react-refresh/only-export-components */
+// Home page icons
+export * from "./home";
+
+// Sidebar icons
+export * from "./sidebar";
+
+// Shared icons (used in multiple places)
+export * from "./shared";

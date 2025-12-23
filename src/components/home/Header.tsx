@@ -1,5 +1,5 @@
 import { Button } from "@heroui/react";
-import { ShareIcon } from "./icons/ShareIcon";
+import { ShareIcon } from "../icons/home/ShareIcon";
 
 interface HeaderProps {
   isCollapsed?: boolean;
