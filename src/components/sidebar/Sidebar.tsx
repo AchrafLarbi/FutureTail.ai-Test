@@ -65,6 +65,8 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse }: SidebarProps) => {
     null
   );
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isLogoLoaded, setIsLogoLoaded] = useState(false);
+  const [isAvatarLoaded, setIsAvatarLoaded] = useState(false);
 
   return (
     <>
@@ -92,13 +94,21 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse }: SidebarProps) => {
         {/* Header with Logo and Collapse Button */}
         <div className="flex items-center justify-between px-5 py-4">
           {/* Logo */}
-          <div className="relative w-12 h-12">
+          <div className="relative w-12 h-12 flex items-center justify-center">
+            {!isLogoLoaded && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-6 h-6 border-2 border-purple-200 border-t-purple-500 rounded-full animate-spin" />
+              </div>
+            )}
             <img
               src={auraIcon}
               alt="Aura Logo"
-              loading="lazy"
+              loading="eager"
               decoding="async"
-              className="w-full h-full object-contain"
+              onLoad={() => setIsLogoLoaded(true)}
+              className={`w-full h-full object-contain transition-opacity duration-300 ${
+                isLogoLoaded ? "opacity-100" : "opacity-0"
+              }`}
             />
           </div>
 
@@ -279,11 +289,23 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse }: SidebarProps) => {
         {/* User Profile */}
         <div className="px-4 py-4 border-t border-gray-100">
           <div className="flex items-center gap-3 px-2">
-            <img
-              src={avatar}
-              alt="User Avatar"
-              className="w-10 h-10 rounded-full object-cover"
-            />
+            <div className="relative w-10 h-10 flex items-center justify-center">
+              {!isAvatarLoaded && (
+                <div className="absolute inset-0 flex items-center justify-center bg-gray-100 rounded-full">
+                  <div className="w-5 h-5 border-2 border-purple-200 border-t-purple-500 rounded-full animate-spin" />
+                </div>
+              )}
+              <img
+                src={avatar}
+                alt="User Avatar"
+                loading="eager"
+                decoding="async"
+                onLoad={() => setIsAvatarLoaded(true)}
+                className={`w-10 h-10 rounded-full object-cover transition-opacity duration-300 ${
+                  isAvatarLoaded ? "opacity-100" : "opacity-0"
+                }`}
+              />
+            </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium text-gray-900 truncate">
                 Ilyes Boudjelthia
