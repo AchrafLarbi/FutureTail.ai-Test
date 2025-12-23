@@ -21,20 +21,28 @@ export const SearchInput = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedAssistant, setSelectedAssistant] = useState(assistants[0]);
   const [inputValue, setInputValue] = useState("");
+  const [isFocused, setIsFocused] = useState(false);
 
   return (
     <div className="w-full">
       {/* Main Input Container */}
-      <div className="bg-white rounded-2xl border border-gray-200 shadow-sm hover:border-gray-300 focus-within:border-purple-400 transition-colors">
+      <div
+        className={`bg-white rounded-2xl border border-gray-200 shadow-sm hover:border-gray-300 focus-within:border-purple-400 transition-all duration-300 ${
+          isFocused || inputValue ? "min-h-[140px]" : ""
+        }`}
+      >
         {/* Input Row */}
-        <div className="flex items-center px-4 py-3">
-          <StarIcon className="w-5 h-5 text-gray-400 flex-shrink-0" />
-          <input
-            type="text"
+        <div className="flex items-start px-4 py-3">
+          <StarIcon className="w-5 h-5 text-gray-400 flex-shrink-0 mt-1" />
+          <textarea
             placeholder="Ask AI a question or make a request..."
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            className="flex-1 mx-3 text-base text-gray-600 placeholder:text-gray-400 outline-none bg-transparent"
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            className={`flex-1 mx-3 text-base text-gray-600 placeholder:text-gray-400 outline-none bg-transparent resize-none transition-all duration-300 ${
+              isFocused || inputValue ? "h-[80px]" : "h-[24px]"
+            }`}
           />
         </div>
 

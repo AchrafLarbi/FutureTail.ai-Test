@@ -19,3 +19,5 @@ export { LogoutIcon } from "./LogOutIcon";
 export { RobotIcon } from "./RobotIcon";
 export { SendIcon } from "./SendIcon";
 export { InfoIcon } from "./InfoIcon";
+export { DashboardTrendIcon } from "./DashboardTrendIcon";
+export { DashboardChartIcon } from "./DashboardChartIcon";

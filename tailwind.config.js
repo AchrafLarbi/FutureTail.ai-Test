@@ -9,12 +9,17 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Inter", "sans-serif"],
+      },
       colors: {
         aura: {
-          purple: "#A855F7",
-          pink: "#EC4899",
-          gradient: "linear-gradient(135deg, #A855F7 0%, #EC4899 100%)",
+          purple: "#AD46FF",
+          pink: "#F6339A",
         },
+      },
+      backgroundImage: {
+        "aura-gradient": "linear-gradient(to right, #AD46FF, #F6339A, #AD46FF)",
       },
     },
   },
