@@ -72,24 +72,24 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse }: SidebarProps) => {
 
   return (
     <>
-      {/* Collapsed state - only show toggle button */}
+      {/* Collapsed state - only show rounded background on hover */}
       {isCollapsed && (
-        <div className="fixed left-4 top-4 z-50">
+        <div className="fixed left-0 top-0 z-50 w-16 h-16 group flex items-center justify-center">
           <Button
             isIconOnly
             variant="light"
             size="md"
-            className="text-gray-400 hover:text-gray-600 bg-white dark:bg-gray-800 dark:text-gray-300 dark:hover:text-white shadow-md rounded-lg"
             onClick={onToggleCollapse}
+            className="text-gray-400 hover:text-gray-600 dark:text-gray-300 dark:hover:text-white bg-transparent group-hover:bg-white dark:group-hover:bg-gray-800 group-hover:shadow-md rounded-full transition-all duration-300 flex items-center justify-center"
           >
-            <SidebarCollapseIcon className="w-6 h-6" isCollapsed={true} />
+            <SidebarCollapseIcon className="flex w-6 h-6" isCollapsed={true} />
           </Button>
         </div>
       )}
 
       {/* Full Sidebar */}
       <aside
-        className={`fixed left-0 top-0 bottom-0 w-[280px] bg-white dark:bg-gray-900 border-r border-gray-100 dark:border-gray-800 flex flex-col z-50 transition-transform duration-300 ${
+        className={`fixed left-0 top-0 bottom-0 w-[280px] bg-white  dark:bg-gray-900 border-r border-gray-100 dark:border-gray-800 flex flex-col z-50 transition-transform duration-300 ${
           isCollapsed ? "-translate-x-full" : "translate-x-0"
         }`}
       >
@@ -120,7 +120,7 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse }: SidebarProps) => {
             isIconOnly
             variant="light"
             size="md"
-            className="text-gray-400 hover:text-gray-600"
+            className="text-gray-400 hover:text-gray-900"
             onClick={onToggleCollapse}
           >
             <SidebarCollapseIcon className="w-7 h-7" isCollapsed={false} />
